@@ -64,7 +64,7 @@ public final class InfusedVampireBlade extends SlimefunItem implements NotPlacea
             l.add(l.getDirection().multiply(8));
 
             if (!l.getBlock().isEmpty()) {
-                p.sendMessage(ChatColor.RED + "You cannot teleport into a solid block!");
+                p.sendMessage(ChatColor.RED + "你不能传送到一个实体块!");
                 return;
             }
 
@@ -76,7 +76,7 @@ public final class InfusedVampireBlade extends SlimefunItem implements NotPlacea
                 p.teleport(l);
 
             } else {
-                p.sendMessage(ChatColor.RED + "You need at least 20 blood to teleport, " + BloodUtils.getStoredString(blood));
+                p.sendMessage(ChatColor.RED + "你需要至少20个血液来传送, " + BloodUtils.getStoredString(blood));
             }
         };
     }

@@ -69,7 +69,7 @@ public final class BloodTotem extends SlimefunItem implements Listener {
                 totem.setItemMeta(totemMeta);
 
                 if (blood > 95) {
-                    p.sendMessage(ChatColor.GREEN + "Your blood totem is ready!");
+                    p.sendMessage(ChatColor.GREEN + "你的血图腾准备好了!");
                 }
             }
         });
@@ -98,7 +98,7 @@ public final class BloodTotem extends SlimefunItem implements Listener {
                 } else {
                     // Don't revive
                     e.setCancelled(true);
-                    p.sendMessage(ChatColor.RED + "You need 100 blood to revive, " + BloodUtils.getStoredString(blood));
+                    p.sendMessage(ChatColor.RED + "你需要100血才能苏醒, " + BloodUtils.getStoredString(blood));
                 }
             });
         }

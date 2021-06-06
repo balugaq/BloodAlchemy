@@ -19,7 +19,7 @@ import me.mrCookieSlime.Slimefun.cscorelib2.item.CustomItem;
 public final class SlimefunSeed extends SlimefunItem {
 
     public static final RecipeType TYPE = new RecipeType(BloodAlchemy.inst().getKey("farming"),
-            new CustomItem(Material.DIAMOND_HOE, "&eFarming"));
+            new CustomItem(Material.DIAMOND_HOE, "&e快了..."));
 
     private final SlimefunItemStack crop;
 

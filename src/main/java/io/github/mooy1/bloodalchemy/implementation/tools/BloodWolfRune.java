@@ -56,17 +56,17 @@ public final class BloodWolfRune extends SlimefunItem implements Listener, NotPl
 
                 // Mak sure the wolf is tamed
                 if (!((Wolf) wolf).isTamed()) {
-                    p.sendMessage(ChatColor.RED + "You must tame the wolf first!");
+                    p.sendMessage(ChatColor.RED + "你必须先驯服狼!");
                     return;
                 }
 
                 PersistentDataContainer con = wolf.getPersistentDataContainer();
 
                 if (con.has(this.bloodWolf, PersistentDataType.BYTE)) {
-                    p.sendMessage(ChatColor.RED + "This wolf is already a blood wolf");
+                    p.sendMessage(ChatColor.RED + "这只狼已经是血狼了");
 
                 } else {
-                    p.sendMessage(ChatColor.GREEN + "Transformed into blood wolf!");
+                    p.sendMessage(ChatColor.GREEN + "变成了血狼!");
 
                     con.set(this.bloodWolf, PersistentDataType.BYTE, (byte) 1);
                     item.setAmount(item.getAmount() - 1);
