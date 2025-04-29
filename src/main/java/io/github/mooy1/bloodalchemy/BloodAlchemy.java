@@ -12,7 +12,7 @@ public final class BloodAlchemy extends AbstractAddon {
     private static BloodAlchemy instance;
 
     public BloodAlchemy() {
-        super("balugaq", "BloodAlchemy", " ", " ");
+        super("balugaq", "BloodAlchemy", "master", "auto-update");
     }
 
     public static BloodAlchemy inst() {

@@ -44,13 +44,13 @@ public final class Items {
 
     //region Items
     public static final SlimefunItemStack BLOOD_GEM = new SlimefunItemStack(
-            "BLOOD_GEM",
+            "BLOOD_ALCHEMY_BLOOD_GEM",
             Material.RED_DYE,
             "&c血宝石",
             "&7充满血的力量的钻石"
     );
     public static final SlimefunItemStack BLOOD = new SlimefunItemStack(
-            "BLOOD",
+            "BLOOD_ALCHEMY_BLOOD",
             Material.REDSTONE,
             "&4血",
             "&7闪烁着力量"
@@ -59,20 +59,20 @@ public final class Items {
 
     //region Tools
     public static final SlimefunItemStack SACRIFICIAL_DAGGER = new SlimefunItemStack(
-            "SACRIFICIAL_DAGGER",
+            "BLOOD_ALCHEMY_SACRIFICIAL_DAGGER",
             Material.IRON_SWORD,
             "&f祭祀匕首",
             "&7收集杀死生物的血液",
             "&7右击可采集自己的血液"
     );
     public static final SlimefunItemStack HARVEST_SCYTHE = new SlimefunItemStack(
-            "HARVEST_SCYTHE",
+            "BLOOD_ALCHEMY_HARVEST_SCYTHE",
             Material.DIAMOND_HOE,
             "&e收割镰刀",
             "&7右击可在5x5区域收割和重新种植作物"
     );
     public static final SlimefunItemStack BLOOD_TOTEM = new SlimefunItemStack(
-            "BLOOD_TOTEM",
+            "BLOOD_ALCHEMY_BLOOD_TOTEM",
             Material.TOTEM_OF_UNDYING,
             "&4血图腾",
             "&7攻击或杀戮时获得鲜血和能量",
@@ -81,14 +81,14 @@ public final class Items {
             BloodUtils.getStoredString(0)
     );
     public static final SlimefunItemStack BLOOD_WOLF_RUNE = new SlimefunItemStack(
-            "BLOOD_WOLF_RUNE",
+            "BLOOD_ALCHEMY_BLOOD_WOLF_RUNE",
             Material.RED_GLAZED_TERRACOTTA,
             "&4血狼符文",
             "&7使狼在攻击时有自愈和吸血的能力",
             "&7右键狼激活"
     );
     public static final SlimefunItemStack INFUSED_VAMPIRE_BLADE = new SlimefunItemStack(
-            "INFUSED_VAMPIRE_BLADE",
+            "BLOOD_ALCHEMY_INFUSED_VAMPIRE_BLADE",
             Material.NETHERITE_SWORD,
             "&4吸血鬼之刃",
             meta -> {
@@ -103,13 +103,13 @@ public final class Items {
             }
     );
     public static final SlimefunItemStack ENCHANTED_BLOOD_APPLE = new SlimefunItemStack(
-            "ENCHANTED_BLOOD_APPLE",
+            "BLOOD_ALCHEMY_ENCHANTED_BLOOD_APPLE",
             Material.ENCHANTED_GOLDEN_APPLE,
             "&c附魔血苹果",
             "&7充满了血的力量"
     );
     public static final SlimefunItemStack GOLDEN_POTION = new SlimefunItemStack(
-            "GOLDEN_POTION",
+            "BLOOD_ALCHEMY_GOLDEN_POTION",
             Material.POTION,
             "&c黄金药水",
             meta -> {
@@ -123,7 +123,7 @@ public final class Items {
             }
     );
     public static final SlimefunItemStack VAMPIRIC_SPEED_POTION = new SlimefunItemStack(
-            "VAMPIRIC_SPEED_POTION",
+            "BLOOD_ALCHEMY_VAMPIRIC_SPEED_POTION",
             Material.POTION,
             "&c吸血鬼速度药剂",
             meta -> {
@@ -134,7 +134,7 @@ public final class Items {
             }
     );
     public static final SlimefunItemStack VAMPIRIC_STRENGTH_POTION = new SlimefunItemStack(
-            "VAMPIRIC_STRENGTH_POTION",
+            "BLOOD_ALCHEMY_VAMPIRIC_STRENGTH_POTION",
             Material.POTION,
             "&c吸血鬼力量药剂",
             meta -> {
@@ -145,7 +145,7 @@ public final class Items {
             }
     );
     public static final SlimefunItemStack VAMPIRIC_REGENERATION_POTION = new SlimefunItemStack(
-            "VAMPIRIC_REGENERATION_POTION",
+            "BLOOD_ALCHEMY_VAMPIRIC_REGENERATION_POTION",
             Material.POTION,
             "&c吸血鬼再生药剂",
             meta -> {
@@ -156,7 +156,7 @@ public final class Items {
             }
     );
     public static final SlimefunItemStack DEATH_POTION = new SlimefunItemStack(
-            "DEATH_POTION",
+            "BLOOD_ALCHEMY_DEATH_POTION",
             Material.SPLASH_POTION,
             "&8死亡药剂",
             meta -> {
@@ -172,20 +172,20 @@ public final class Items {
 
     //region Blocks
     public static final SlimefunItemStack GOLDEN_SEEDS = new SlimefunItemStack(
-            "GOLDEN_SEEDS",
+            "BLOOD_ALCHEMY_GOLDEN_SEEDS",
             Material.WHEAT_SEEDS,
             "&e金色种子",
             "&7充满了鲜血和黄金"
     );
     public static final SlimefunItemStack BLOOD_ALTAR = new SlimefunItemStack(
-            "BLOOD_ALTAR",
+            "BLOOD_ALCHEMY_BLOOD_ALTAR",
             Material.ENCHANTING_TABLE,
             "&c血液祭坛",
             "&7用来制造和注入的物品",
             "&7将物品配方丢到血液祭坛旁边,然后右击制造"
     );
     public static final SlimefunItemStack BLOOD_HOPPER = new SlimefunItemStack(
-            "BLOOD_HOPPER",
+            "BLOOD_ALCHEMY_BLOOD_HOPPER",
             Material.HOPPER,
             "&c血漏斗",
             "&7从上面垂死的生物身上采集血液",
@@ -193,7 +193,7 @@ public final class Items {
             "&c几率: 15%"
     );
     public static final SlimefunItemStack INFUSED_BLOOD_HOPPER = new SlimefunItemStack(
-            "INFUSED_BLOOD_HOPPER",
+            "BLOOD_ALCHEMY_INFUSED_BLOOD_HOPPER",
             Material.HOPPER,
             "&c高级血漏斗",
             "&7从上面垂死的生物身上采集血液",
@@ -201,19 +201,19 @@ public final class Items {
             "&c几率: 100%"
     );
     public static final SlimefunItemStack GOLDEN_WHEAT = new SlimefunItemStack(
-            "GOLDEN_WHEAT",
+            "BLOOD_ALCHEMY_GOLDEN_WHEAT",
             Material.WHEAT,
             "&e金色小麦",
             "&7充满了黄金的力量"
     );
     public static final SlimefunItemStack BLOOD_SHROOM = new SlimefunItemStack(
-            "BLOOD_SHROOM",
+            "BLOOD_ALCHEMY_BLOOD_SHROOM",
             Material.RED_MUSHROOM,
             "&c血迹",
             "&7给附近的人带来药水效果"
     );
     public static final SlimefunItemStack DEATH_SHROOM = new SlimefunItemStack(
-            "DEATH_SHROOM",
+            "BLOOD_ALCHEMY_DEATH_SHROOM",
             Material.BROWN_MUSHROOM,
             "&8死亡血迹",
             "&7给附近的人带来死亡..."

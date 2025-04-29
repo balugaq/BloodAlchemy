@@ -2,6 +2,7 @@ package io.github.mooy1.bloodalchemy.implementation.blocks;
 
 import javax.annotation.Nonnull;
 
+import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -35,12 +36,14 @@ public final class SlimefunSeed extends SlimefunItem {
 
             @Override
             public void onPlayerPlace(@Nonnull BlockPlaceEvent e) {
-                BlockStorage.store(e.getBlock(), SlimefunSeed.this.crop.getItemId());
+                if (StorageCacheUtils.getSfItem(e.getBlock().getLocation()) == null)
+                    BlockStorage.store(e.getBlock(), SlimefunSeed.this.crop.getItemId());
             }
 
             @Override
             public void onBlockPlacerPlace(@Nonnull BlockPlacerPlaceEvent e) {
-                BlockStorage.store(e.getBlock(), SlimefunSeed.this.crop.getItemId());
+                if (StorageCacheUtils.getSfItem(e.getBlock().getLocation()) == null)
+                    BlockStorage.store(e.getBlock(), SlimefunSeed.this.crop.getItemId());
             }
 
         };
