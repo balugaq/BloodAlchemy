@@ -4,6 +4,13 @@ import java.util.function.BiConsumer;
 
 import javax.annotation.Nonnull;
 
+import io.github.mooy1.infinitylib.common.StackUtils;
+import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -17,18 +24,13 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import io.github.mooy1.bloodalchemy.BloodAlchemy;
 import io.github.mooy1.bloodalchemy.utils.BloodUtils;
-import io.github.mooy1.infinitylib.items.StackUtils;
-import me.mrCookieSlime.Slimefun.Lists.RecipeType;
-import me.mrCookieSlime.Slimefun.Objects.Category;
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
-import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 
 public final class BloodTotem extends SlimefunItem implements Listener {
 
-    public BloodTotem(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
+    public BloodTotem(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(category, item, recipeType, recipe);
 
-        BloodAlchemy.inst().registerListener(this);
+        Bukkit.getPluginManager().registerEvents(this, BloodAlchemy.inst());
     }
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
@@ -53,11 +55,9 @@ public final class BloodTotem extends SlimefunItem implements Listener {
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
     private void onHit(@Nonnull EntityDamageByEntityEvent e) {
-        if (!(e.getDamager() instanceof Player)) {
+        if (!(e.getDamager() instanceof Player p)) {
             return;
         }
-
-        Player p = (Player) e.getDamager();
 
         checkTotem(p, (totem, totemMeta) -> {
             int blood = BloodUtils.getStored(totemMeta);
@@ -77,8 +77,7 @@ public final class BloodTotem extends SlimefunItem implements Listener {
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGHEST)
     private void onTotem(@Nonnull EntityResurrectEvent e) {
-        if (e.getEntity() instanceof Player) {
-            Player p = (Player) e.getEntity();
+        if (e.getEntity() instanceof Player p) {
 
             checkTotem(p, (totem, totemMeta) -> {
 
@@ -91,7 +90,7 @@ public final class BloodTotem extends SlimefunItem implements Listener {
                     totem.setItemMeta(totemMeta);
 
                     // Give back totem after they revive
-                    BloodAlchemy.inst().runSync(() -> {
+                    Slimefun.runSync(() -> {
                         totem.setAmount(1);
                         p.getInventory().setItemInOffHand(totem);
                     });
@@ -112,7 +111,7 @@ public final class BloodTotem extends SlimefunItem implements Listener {
             ItemMeta totemMeta = totem.getItemMeta();
 
             // Make sure its a totem
-            if (getId().equals(StackUtils.getID(totemMeta))) {
+            if (getId().equals(StackUtils.getId(totemMeta))) {
                 consumer.accept(totem, totemMeta);
             }
         }

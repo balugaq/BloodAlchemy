@@ -2,6 +2,12 @@ package io.github.mooy1.bloodalchemy.implementation.tools;
 
 import javax.annotation.Nonnull;
 
+import io.github.mooy1.infinitylib.common.StackUtils;
+import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -14,25 +20,20 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import io.github.mooy1.bloodalchemy.BloodAlchemy;
 import io.github.mooy1.bloodalchemy.utils.BloodUtils;
-import io.github.mooy1.infinitylib.items.StackUtils;
 import io.github.thebusybiscuit.slimefun4.core.attributes.NotPlaceable;
 import io.github.thebusybiscuit.slimefun4.core.handlers.EntityKillHandler;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.items.weapons.VampireBlade;
-import me.mrCookieSlime.Slimefun.Lists.RecipeType;
-import me.mrCookieSlime.Slimefun.Objects.Category;
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
-import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 
 /**
  * An upgrade to the {@link VampireBlade} which allows the player to teleport short distances
  */
 public final class InfusedVampireBlade extends SlimefunItem implements NotPlaceable, Listener {
 
-    public InfusedVampireBlade(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
+    public InfusedVampireBlade(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(category, item, recipeType, recipe);
 
-        BloodAlchemy.inst().registerListener(this);
+        Bukkit.getPluginManager().registerEvents(this, BloodAlchemy.inst());
 
         addItemHandler(getKillHandler(), getUseHandler());
     }
@@ -84,11 +85,10 @@ public final class InfusedVampireBlade extends SlimefunItem implements NotPlacea
     // Replace with WeaponUseHandler once merged
     @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
     private void onAttack(@Nonnull EntityDamageByEntityEvent e) {
-        if (!(e.getDamager() instanceof Player)) {
+        if (!(e.getDamager() instanceof Player p)) {
             return;
         }
 
-        Player p = (Player) e.getDamager();
         ItemStack item = p.getInventory().getItemInMainHand();
 
         if (!item.hasItemMeta()) {
@@ -97,7 +97,7 @@ public final class InfusedVampireBlade extends SlimefunItem implements NotPlacea
 
         ItemMeta meta = item.getItemMeta();
 
-        if (getId().equals(StackUtils.getID(meta)) && canUse(p, true)) {
+        if (getId().equals(StackUtils.getId(meta)) && canUse(p, true)) {
 
             int blood = BloodUtils.getStored(meta);
 

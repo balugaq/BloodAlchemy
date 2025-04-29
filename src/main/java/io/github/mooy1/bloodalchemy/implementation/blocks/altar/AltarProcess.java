@@ -1,5 +1,8 @@
 package io.github.mooy1.bloodalchemy.implementation.blocks.altar;
 
+import io.github.mooy1.bloodalchemy.RecipeOutput;
+import io.github.mooy1.bloodalchemy.ShapelessRecipe;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import lombok.RequiredArgsConstructor;
 
 import org.bukkit.Location;
@@ -8,11 +11,7 @@ import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.inventory.ItemStack;
 
-import io.github.mooy1.bloodalchemy.BloodAlchemy;
 import io.github.mooy1.bloodalchemy.utils.BloodUtils;
-import io.github.mooy1.infinitylib.recipes.RecipeOutput;
-import io.github.mooy1.infinitylib.recipes.ShapelessRecipe;
-import io.github.thebusybiscuit.slimefun4.implementation.SlimefunPlugin;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 
 /**
@@ -21,7 +20,7 @@ import me.mrCookieSlime.Slimefun.api.BlockStorage;
 @RequiredArgsConstructor
 final class AltarProcess implements Runnable {
 
-    private static final int INTERVAL = SlimefunPlugin.getTickerTask().getTickRate();
+    private static final int INTERVAL = Slimefun.getTickerTask().getTickRate();
     private static final int TICKS = 10;
 
     private final BloodAltar altar;
@@ -52,7 +51,7 @@ final class AltarProcess implements Runnable {
         } else {
             // Process
             BloodUtils.playEffect(this.location, 10);
-            BloodAlchemy.inst().runSync(this, INTERVAL);
+            Slimefun.runSync(this, INTERVAL);
         }
     }
 

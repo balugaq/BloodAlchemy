@@ -5,6 +5,11 @@ import java.util.Collections;
 
 import javax.annotation.Nonnull;
 
+import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import lombok.experimental.UtilityClass;
 
 import org.bukkit.ChatColor;
@@ -30,11 +35,6 @@ import io.github.mooy1.bloodalchemy.implementation.tools.InfusedVampireBlade;
 import io.github.mooy1.bloodalchemy.implementation.tools.SacrificialDagger;
 import io.github.mooy1.bloodalchemy.utils.BloodUtils;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
-import me.mrCookieSlime.Slimefun.Lists.RecipeType;
-import me.mrCookieSlime.Slimefun.Objects.Category;
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
-import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
-import me.mrCookieSlime.Slimefun.cscorelib2.item.CustomItem;
 
 /**
  * Items added in this addon
@@ -221,8 +221,8 @@ public final class Items {
     //endregion
 
     public static void setup(@Nonnull BloodAlchemy plugin) {
-        Category category = new Category(plugin.getKey("blood_alchemy"),
-                new CustomItem(Material.NETHER_WART_BLOCK, "&4Blood Alchemy(血炼金术)"));
+        ItemGroup category = new ItemGroup(plugin.getKey("blood_alchemy"),
+                new CustomItemStack(Material.NETHER_WART_BLOCK, "&4Blood Alchemy(血炼金术)"));
 
         new SacrificialDagger(category, SACRIFICIAL_DAGGER, RecipeType.MAGIC_WORKBENCH, new ItemStack[] {
                 null, SlimefunItems.SILVER_INGOT, SlimefunItems.SILVER_INGOT,
@@ -231,7 +231,7 @@ public final class Items {
         }).register(plugin);
 
         new SlimefunItem(category, BLOOD, SacrificialDagger.TYPE, new ItemStack[] {
-                new CustomItem(Material.ZOMBIE_HEAD, "&c攻击生物或玩家")
+                new CustomItemStack(Material.ZOMBIE_HEAD, "&c攻击生物或玩家")
         }).register(plugin);
 
         new BloodAltar(category, BLOOD_ALTAR, RecipeType.MAGIC_WORKBENCH, new ItemStack[] {

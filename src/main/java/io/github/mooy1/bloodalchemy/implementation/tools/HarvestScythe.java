@@ -4,6 +4,10 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import javax.annotation.Nonnull;
 
+import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.Material;
@@ -19,18 +23,14 @@ import org.bukkit.inventory.ItemStack;
 import io.github.thebusybiscuit.slimefun4.core.attributes.DamageableItem;
 import io.github.thebusybiscuit.slimefun4.core.attributes.NotPlaceable;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
-import me.mrCookieSlime.Slimefun.Lists.RecipeType;
-import me.mrCookieSlime.Slimefun.Objects.Category;
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
-import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 
 /**
  * A hoe which harvests and replant crops in a 5x5 area
  */
 public final class HarvestScythe extends SlimefunItem implements DamageableItem, NotPlaceable {
 
-    public HarvestScythe(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
+    public HarvestScythe(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(category, item, recipeType, recipe);
 
         addItemHandler(getUseHandler());
@@ -134,11 +134,9 @@ public final class HarvestScythe extends SlimefunItem implements DamageableItem,
     private void harvestAndReplant(@Nonnull Player p, @Nonnull ItemStack item, @Nonnull Block target) {
         BlockData data = target.getBlockData();
 
-        if (!(data instanceof Ageable)) {
+        if (!(data instanceof Ageable ageable)) {
             return;
         }
-
-        Ageable ageable = (Ageable) data;
 
         if (ageable.getAge() != ageable.getMaximumAge()) {
             return;

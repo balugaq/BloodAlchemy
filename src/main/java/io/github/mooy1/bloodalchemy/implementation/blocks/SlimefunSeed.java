@@ -2,6 +2,11 @@ package io.github.mooy1.bloodalchemy.implementation.blocks;
 
 import javax.annotation.Nonnull;
 
+import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import org.bukkit.Material;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
@@ -9,21 +14,16 @@ import org.bukkit.inventory.ItemStack;
 import io.github.mooy1.bloodalchemy.BloodAlchemy;
 import io.github.thebusybiscuit.slimefun4.api.events.BlockPlacerPlaceEvent;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockPlaceHandler;
-import me.mrCookieSlime.Slimefun.Lists.RecipeType;
-import me.mrCookieSlime.Slimefun.Objects.Category;
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
-import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
-import me.mrCookieSlime.Slimefun.cscorelib2.item.CustomItem;
 
 public final class SlimefunSeed extends SlimefunItem {
 
     public static final RecipeType TYPE = new RecipeType(BloodAlchemy.inst().getKey("farming"),
-            new CustomItem(Material.DIAMOND_HOE, "&e快了..."));
+            new CustomItemStack(Material.DIAMOND_HOE, "&e快了..."));
 
     private final SlimefunItemStack crop;
 
-    public SlimefunSeed(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe, SlimefunItemStack crop) {
+    public SlimefunSeed(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe, SlimefunItemStack crop) {
         super(category, item, recipeType, recipe);
         this.crop = crop;
 

@@ -2,6 +2,11 @@ package io.github.mooy1.bloodalchemy.implementation.tools;
 
 import javax.annotation.Nonnull;
 
+import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
@@ -17,10 +22,6 @@ import io.github.mooy1.bloodalchemy.utils.BloodUtils;
 import io.github.thebusybiscuit.slimefun4.core.attributes.NotPlaceable;
 import io.github.thebusybiscuit.slimefun4.core.handlers.EntityKillHandler;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
-import me.mrCookieSlime.Slimefun.Lists.RecipeType;
-import me.mrCookieSlime.Slimefun.Objects.Category;
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
-import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 
 /**
  * A dagger which drops blood from attacked entities
@@ -29,10 +30,10 @@ public final class SacrificialDagger extends SlimefunItem implements Listener, N
 
     public static final RecipeType TYPE = new RecipeType(BloodAlchemy.inst().getKey("sacrificial_dagger"), Items.SACRIFICIAL_DAGGER);
 
-    public SacrificialDagger(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
+    public SacrificialDagger(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(category, item, recipeType, recipe);
 
-        BloodAlchemy.inst().registerListener(this);
+        Bukkit.getPluginManager().registerEvents(this, BloodAlchemy.inst());
 
         addItemHandler(getUseHandler(), getKillHandler());
     }
@@ -62,8 +63,7 @@ public final class SacrificialDagger extends SlimefunItem implements Listener, N
     // Replace with WeaponUseHandler once merged
     @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
     private void onAttack(@Nonnull EntityDamageByEntityEvent e) {
-        if (e.getDamager() instanceof Player) {
-            Player p = (Player) e.getDamager();
+        if (e.getDamager() instanceof Player p) {
 
             if (isItem(p.getInventory().getItemInMainHand()) && canUse(p, true)) {
 

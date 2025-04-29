@@ -4,6 +4,11 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import javax.annotation.Nonnull;
 
+import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
@@ -24,10 +29,6 @@ import io.github.mooy1.bloodalchemy.utils.BloodUtils;
 import io.github.thebusybiscuit.slimefun4.core.attributes.NotPlaceable;
 import io.github.thebusybiscuit.slimefun4.core.handlers.EntityInteractHandler;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
-import me.mrCookieSlime.Slimefun.Lists.RecipeType;
-import me.mrCookieSlime.Slimefun.Objects.Category;
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
-import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 
 /**
  * A rune that gives wolves the ability to heal themselves and drop blood when attacking
@@ -36,12 +37,12 @@ public final class BloodWolfRune extends SlimefunItem implements Listener, NotPl
 
     private final NamespacedKey bloodWolf = BloodAlchemy.inst().getKey("blood_wolf");
 
-    public BloodWolfRune(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
+    public BloodWolfRune(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(category, item, recipeType, recipe);
 
         addItemHandler(getEntityHandler(), (ItemUseHandler) e -> e.setUseBlock(Event.Result.DENY));
 
-        BloodAlchemy.inst().registerListener(this);
+        Bukkit.getPluginManager().registerEvents(this, BloodAlchemy.inst());
     }
 
     private EntityInteractHandler getEntityHandler() {
@@ -80,10 +81,8 @@ public final class BloodWolfRune extends SlimefunItem implements Listener, NotPl
     private void onBloodWolfAttack(@Nonnull EntityDamageByEntityEvent e) {
 
         // Check for blood wolf
-        if (e.getDamager() instanceof Wolf
+        if (e.getDamager() instanceof Wolf wolf
                 && e.getDamager().getPersistentDataContainer().has(this.bloodWolf, PersistentDataType.BYTE)) {
-
-            Wolf wolf = (Wolf) e.getDamager();
 
             // Heal
             double max = wolf.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue();

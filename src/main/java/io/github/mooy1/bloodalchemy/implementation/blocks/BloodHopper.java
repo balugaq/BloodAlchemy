@@ -4,6 +4,11 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import javax.annotation.Nonnull;
 
+import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
@@ -18,11 +23,7 @@ import io.github.mooy1.bloodalchemy.BloodAlchemy;
 import io.github.mooy1.bloodalchemy.implementation.Items;
 import io.github.thebusybiscuit.slimefun4.implementation.handlers.VanillaInventoryDropHandler;
 import io.github.thebusybiscuit.slimefun4.libraries.paperlib.PaperLib;
-import me.mrCookieSlime.Slimefun.Lists.RecipeType;
-import me.mrCookieSlime.Slimefun.Objects.Category;
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
-import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 
 /**
  * A hopper which collects blood from dying entities up to 2 blocks above
@@ -31,13 +32,13 @@ public final class BloodHopper extends SlimefunItem implements Listener {
 
     private final int chance;
 
-    public BloodHopper(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe, int chance) {
+    public BloodHopper(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe, int chance) {
         super(category, item, recipeType, recipe);
         this.chance = chance;
 
         addItemHandler(new VanillaInventoryDropHandler<>(Hopper.class));
 
-        BloodAlchemy.inst().registerListener(this);
+        Bukkit.getPluginManager().registerEvents(this, BloodAlchemy.inst());
     }
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
