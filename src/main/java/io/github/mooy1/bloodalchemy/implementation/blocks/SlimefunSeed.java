@@ -7,6 +7,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import org.bukkit.Material;
 import org.bukkit.event.block.BlockPlaceEvent;
@@ -36,14 +37,14 @@ public final class SlimefunSeed extends SlimefunItem {
 
             @Override
             public void onPlayerPlace(@Nonnull BlockPlaceEvent e) {
-                if (StorageCacheUtils.getSfItem(e.getBlock().getLocation()) == null)
-                    BlockStorage.store(e.getBlock(), SlimefunSeed.this.crop.getItemId());
+                Slimefun.getDatabaseManager().getBlockDataController().removeBlock(e.getBlock().getLocation());
+                Slimefun.getDatabaseManager().getBlockDataController().createBlock(e.getBlock().getLocation(), SlimefunSeed.this.crop.getItemId());
             }
 
             @Override
             public void onBlockPlacerPlace(@Nonnull BlockPlacerPlaceEvent e) {
-                if (StorageCacheUtils.getSfItem(e.getBlock().getLocation()) == null)
-                    BlockStorage.store(e.getBlock(), SlimefunSeed.this.crop.getItemId());
+                Slimefun.getDatabaseManager().getBlockDataController().removeBlock(e.getBlock().getLocation());
+                Slimefun.getDatabaseManager().getBlockDataController().createBlock(e.getBlock().getLocation(), SlimefunSeed.this.crop.getItemId());
             }
 
         };
